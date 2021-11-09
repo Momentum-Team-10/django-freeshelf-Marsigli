@@ -17,9 +17,16 @@
         <h3>Added to List: {{ book.created_at }}</h3>
         <h4>Description: {{ book.description }}</h4>
         <h4>URL: {{book.url }}</h4>
-        <a href = 'books/{{book.id}}/delete'>Delete</a>
-        <a href = 'books/{{book.id}}/edit'>Edit</a>
-        {% endfor %}
+        <a href="books/{{book.id}}/delete">Delete</a>
+        <a href="books/{{book.id}}/edit">Edit</a>
+        {% if user.id != None %} 
+            {% if book in favorites %}
+            <a href="/books/{{book.id}}/remove_favorite">Remove from Favorites</a>
+            {% else %}
+                <a href="/books/{{book.id}}/add_favorite">Add to Favorites</a>
+            {% endif %} 
+        {% endif %} 
+    {% endfor %}
     </div>
 </div>
 

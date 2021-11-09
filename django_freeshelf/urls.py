@@ -24,6 +24,7 @@ urlpatterns = [
     path('books/add_book/', books_views.add_book, name='add_book'),
     path('books/<int:pk>/delete', books_views.delete_book, name='delete_book'),
     path('books/<int:pk>/edit', books_views.edit_book, name='edit_book'),
-    
+    path('books/<int:pk>/add_favorite', books_views.add_favorite, name='add_favorite'),
+    path('books/<int:pk>/remove_favorite', books_views.remove_favorite, name='remove_favorite'),
 ]
 

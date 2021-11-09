@@ -3,13 +3,15 @@ from .forms import BookForm
 
 from books.models import Books
 from django.http import HttpResponseRedirect
-
-# Create your views here.
+from django.http import HttpResponse
+from books.models import User
 
 
 def list_books(request):
     books = Books.objects.all().order_by("title")
-    return render(request, "books/list_books.html", {"books": books})
+    user = User.objects.get(id=request.user.id)
+    favorites = user.favorite_books.all()
+    return render(request, "books/list_books.html", {"books": books, "favorites": favorites})
 
 
 def add_book(request):
@@ -40,3 +42,15 @@ def edit_book(request, pk):
         return HttpResponseRedirect('/')
     else:
         return render(request, 'books/edit_book.html', {'book': book})
+    
+def add_favorite(request, pk):
+    book = Books.objects.get(id=pk)
+    user = User.objects.get(id=request.user.id)
+    user.favorite_books.add(book)
+    return HttpResponseRedirect('/')
+
+def remove_favorite(request, pk):
+    book = Books.objects.get(id=pk)
+    user = User.objects.get(id=request.user.id)
+    user.favorite_books.remove(book)
+    return HttpResponseRedirect('/')

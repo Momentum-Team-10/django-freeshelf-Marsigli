@@ -8,6 +8,8 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+    
+    favorite_books = models.ManyToManyField('Books')
 
 class Books(models.Model):
     title = models.CharField(max_length=255)
@@ -15,3 +17,4 @@ class Books(models.Model):
     description = models.CharField(max_length=355)
     url = models.URLField(max_length=100, null=True, blank=True)
     created_at = models.DateField(null=True, editable=False, blank=True, auto_now_add=True)
+    
