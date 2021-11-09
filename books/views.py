@@ -19,5 +19,4 @@ def add_book(request):
         if form.is_valid():
             form.save()
             return redirect(to='list_books')
-
     return render(request, "books/add_book.html", {"form": form})
