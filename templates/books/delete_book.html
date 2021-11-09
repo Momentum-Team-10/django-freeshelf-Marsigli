@@ -1,0 +1,10 @@
+<p>Are you sure you want to delete {{book.title}}?</p>
+
+
+<form method="POST">
+    <!-- server side security token cross site request forgery -->
+    {% csrf_token %} 
+    <input type="hidden" name="id" value='{{book.id}}'/>
+    <input type="submit" name="aButton" value="delete" />
+    <a href= '/'>Cancel</a>
+</form>

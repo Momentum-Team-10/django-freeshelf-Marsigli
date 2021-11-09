@@ -1,0 +1,11 @@
+
+<form method="POST">
+    <!-- server side security token cross site request forgery -->
+    {% csrf_token %} 
+    Title: <input type="text" name="title" value='{{book.title}}' />
+    <br />
+    Author: <input type="text" name="author_name" value='{{book.author_name}}' />
+    <br />
+    <input type="hidden" name="id" value='{{book.id}}'/>
+    <input type="submit" name="aButton" value="Edit" />
+</form>
